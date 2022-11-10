@@ -76,9 +76,15 @@ header {
 }
 
 .icons {
-  width: 27px;
-  height: 27px;
   padding-right: 10px;
+}
+
+.icons:hover {
+  opacity: 0.6;
+}
+
+.liked {
+  color: red;
 }
 
 p {
@@ -91,4 +97,8 @@ p {
 
 span {
   font-weight: 700;
+}
+
+.fa-solid {
+  color: red;
 }

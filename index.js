@@ -1,38 +1,85 @@
 import { posts } from "./data.js";
 
+document.addEventListener("click", (e) => {
+  if (e.target.dataset.like) {
+    handleLikeClick(e.target.dataset.like);
+  }
+});
+
+document.addEventListener("dblclick", (e) => {
+  if (e.target.dataset.img) {
+    handleLikeClickImg(e.target.dataset.img);
+  }
+});
+
+function handleLikeClick(postId) {
+  const targetPostObj = posts.filter((post) => post.uuid === postId)[0];
+
+  if (targetPostObj.isLiked) {
+    targetPostObj.likes--;
+  } else {
+    targetPostObj.likes++;
+  }
+  targetPostObj.isLiked = !targetPostObj.isLiked;
+  render();
+}
+
+function handleLikeClickImg(postId) {
+  const targetPostObj = posts.filter((post) => post.uuid === postId)[0];
+
+  if (targetPostObj.isLiked) {
+    targetPostObj.likes--;
+  } else {
+    targetPostObj.likes++;
+  }
+  targetPostObj.isLiked = !targetPostObj.isLiked;
+  render();
+}
+
 function displayPost() {
-  const postContainer = document.getElementById("posts-container");
+  let feedHtml = ``;
+  posts.forEach((post) => {
+    let likeIconClass = "";
 
-  for (let i = 0; i < posts.length; i++) {
-    postContainer.innerHTML += `
-    <section class="posts">
-        <div class="user-info container">
-          <img src="${posts[i].avatar}" class="user-avatar" />
+    if (post.isLiked) {
+      likeIconClass = "fa-solid";
+    }
+
+    feedHtml += `
+    <section class="posts" id="${post.uuid}">
+      <div class="user-info container">
+          <img src="${post.avatar}" class="user-avatar" />
           <div class="user-name-loc">
-            <p class="user-name">${posts[i].username}</p>
-            <p class="user-location">${posts[i].location}</p>
+            <p class="user-name">${post.username}</p>
+            <p class="user-location">${post.location}</p>
           </div>
+      </div>
+      <div>
+        <img src="${post.post}" class="post-img" data-img="${post.uuid}"/>
+      </div>
+      <div class="user-interaction container">
+        <div class="post-icons">
+          <i class="fa-regular fa-heart fa-xl icons ${likeIconClass}" data-like="${post.uuid}"></i>
+          <i class="fa-regular fa-comment fa-xl icons"></i>
+          <i class="fa-regular fa-paper-plane fa-xl icons"></i>
         </div>
-        <div>
-          <img src="${posts[i].post}" class="post-img" />
-        </div>
-        <div class="user-interaction container">
-          <div class="post-icons">
-            <img src="images/icon-heart.png" class="icons" id="like-btn"/>
-            <img src="images/icon-comment.png" class="icons" />
-            <img src="images/icon-dm.png" class="icons" />
-          </div>
 
-          <p class="likes">${posts[i].likes} likes</p>
-          <p class="caption">
-            <span>${posts[i].username}</span> ${posts[i].comment}
-          </p>
-        </div>
+        <p class="likes">${post.likes} likes</p>
+        <p class="caption">
+          <span>${post.username}</span> ${post.comment}
+        </p>
+      </div>
       </section>
 
       <div class="divider"></div>
     `;
-  }
+  });
+
+  return feedHtml;
 }
 
-displayPost();
+function render() {
+  document.getElementById("posts-container").innerHTML = displayPost();
+}
+
+render();

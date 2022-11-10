@@ -1,5 +1,3 @@
-import { v4 as uuidv4 } from "https://jspm.dev/uuid";
-
 export const posts = [
   {
     name: "Vincent van Gogh",
@@ -10,7 +8,7 @@ export const posts = [
     comment: "just took a few mushrooms lol",
     likes: 21,
     isLiked: false,
-    id: uuidv4(),
+    uuid: "50ddcd9f-c0a2-498a-8e84-47bcd4fa0d51",
   },
   {
     name: "Gustave Courbet",
@@ -21,7 +19,7 @@ export const posts = [
     comment: "i'm feelin a bit stressed tbh",
     likes: 4,
     isLiked: false,
-    id: uuidv4(),
+    uuid: "53e3fa9b-4e45-4e46-9ba9-941b217f87fa",
   },
   {
     name: "Joseph Ducreux",
@@ -33,6 +31,6 @@ export const posts = [
       "gm friends! which coin are YOU stacking up today?? post below and WAGMI!",
     likes: 152,
     isLiked: false,
-    id: uuidv4(),
+    uuid: "0c9caf24-e3b5-402f-bee0-795838be9070",
   },
 ];

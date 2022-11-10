@@ -14,7 +14,6 @@ document.addEventListener("dblclick", (e) => {
 
 function handleLikeClick(postId) {
   const targetPostObj = posts.filter((post) => post.uuid === postId)[0];
-
   if (targetPostObj.isLiked) {
     targetPostObj.likes--;
   } else {
@@ -26,7 +25,6 @@ function handleLikeClick(postId) {
 
 function handleLikeClickImg(postId) {
   const targetPostObj = posts.filter((post) => post.uuid === postId)[0];
-
   if (targetPostObj.isLiked) {
     targetPostObj.likes--;
   } else {
@@ -46,7 +44,7 @@ function displayPost() {
     }
 
     feedHtml += `
-    <section class="posts" id="${post.uuid}">
+    <section id="${post.uuid}">
       <div class="user-info container">
           <img src="${post.avatar}" class="user-avatar" />
           <div class="user-name-loc">
@@ -64,7 +62,7 @@ function displayPost() {
           <i class="fa-regular fa-paper-plane fa-xl icons"></i>
         </div>
 
-        <p class="likes">${post.likes} likes</p>
+        <p id="likes">${post.likes} likes</p>
         <p class="caption">
           <span>${post.username}</span> ${post.comment}
         </p>

@@ -11,10 +11,10 @@ body {
 main {
   width: 375px;
   margin: 0 auto;
+  background-color: white;
 }
 
 header {
-  background-color: white;
   height: 67px;
   display: flex;
   justify-content: space-between;
@@ -35,10 +35,6 @@ header {
 
 .divider {
   border: 1px solid lightgrey;
-}
-
-.posts {
-  background-color: white;
 }
 
 .container {
@@ -83,15 +79,11 @@ header {
   opacity: 0.6;
 }
 
-.liked {
-  color: red;
-}
-
 p {
   margin: 10px 0;
 }
 
-.likes {
+#likes {
   font-weight: 700;
 }
 
